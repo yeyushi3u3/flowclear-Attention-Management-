@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Enable class-based dark mode for Tailwind v4
+   Without this, `dark:` utilities ignore the .dark class toggle
+   ============================================================ */
+@variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   Zen Design Tokens — Light & Dark
+   Uses CSS custom properties on :root / .dark so that
+   var(--color-zen-*) auto-resolves to the correct value
+   in both modes — no `dark:` fallback needed!
+   ============================================================ */
+
+/* ------ Light mode (default) ------ */
+:root {
+  --color-zen-red: #C94B4B;
+  --color-zen-red-light: #F8E8E8;
+  --color-zen-red-bg: #FDF2F2;
+  --color-zen-blue: #4A7FB5;
+  --color-zen-blue-light: #E3EEF7;
+  --color-zen-blue-bg: #F2F7FB;
+  --color-zen-yellow: #C9A53B;
+  --color-zen-yellow-light: #FCF3DC;
+  --color-zen-yellow-bg: #FDF9F0;
+  --color-zen-gray: #8C8B85;
+  --color-zen-gray-light: #ECECEA;
+  --color-zen-gray-bg: #F5F5F3;
+  --color-zen-bg: #F7F5F0;
+  --color-zen-surface: #FFFFFF;
+  --color-zen-text: #1E1E1E;
+  --color-zen-text-secondary: #5C5C55;
+  --color-zen-text-muted: #96968E;
+  --color-zen-border: #E5E3DE;
+}
+
+/* ------ Dark mode — override same variables ------ */
+.dark {
+  --color-zen-red: #E87373;
+  --color-zen-red-light: #3D2020;
+  --color-zen-red-bg: #241818;
+  --color-zen-blue: #6B9FCF;
+  --color-zen-blue-light: #1E2D3B;
+  --color-zen-blue-bg: #18222B;
+  --color-zen-yellow: #DEBF5B;
+  --color-zen-yellow-light: #3B3220;
+  --color-zen-yellow-bg: #282218;
+  --color-zen-gray: #9E9D97;
+  --color-zen-gray-light: #2E2E2C;
+  --color-zen-gray-bg: #232320;
+  --color-zen-bg: #121212;
+  --color-zen-surface: #1E1E1E;
+  --color-zen-text: #EDEDEB;
+  --color-zen-text-secondary: #B8B8B0;
+  --color-zen-text-muted: #7A7A72;
+  --color-zen-border: #33332F;
+}
+
+/* ------ Static theme tokens (tailwind-utility-friendly) ------ */
+@theme {
+  --font-family-sans: 'Inter', 'Noto Sans SC', system-ui, -apple-system, sans-serif;
+  --radius-card: 12px;
+  --radius-btn: 8px;
+  --radius-lg: 16px;
+}
+
+/* ===== Breathing Dot Animations ===== */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.55; }
+}
+
+@utility animate-breathe-red {
+  animation: breathe 1.2s ease-in-out infinite;
+}
+@utility animate-breathe-blue {
+  animation: breathe 2.0s ease-in-out infinite;
+}
+@utility animate-breathe-yellow {
+  animation: breathe 3.0s ease-in-out infinite;
+}
+
+@keyframes zen-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.65; }
+}
+
+/* ===== Base Styles ===== */
+body {
+  margin: 0;
+  background-color: var(--color-zen-bg);
+  color: var(--color-zen-text);
+  font-family: var(--font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ===== Dark mode — global overrides ===== */
+.dark {
+  color-scheme: dark;
+}
+
+/* ===== Focus Styles (A11y) ===== */
+*:focus-visible {
+  outline: 2px solid var(--color-zen-blue);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-zen-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-zen-gray);
+}
+
+/* ===== Accessibility: Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===== Selection ===== */
+::selection {
+  background: var(--color-zen-blue-light);
+  color: var(--color-zen-text);
+}

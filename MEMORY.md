@@ -1,0 +1,4 @@
+- [项目总览](memory/project-overview.md) — 静流 FlowClear Demo 技术栈、功能、启动方式
+- [PRD 摘要](memory/flowclear-prd.md) — V1.0 需求文档核心要点
+- [V1.1 更新说明](memory/v1.1-changelog.md) — 红色Toast、消息分类、滑动删除、全页面暗色
+- [V1.2 更新说明](memory/v1.2-changelog.md) — 夜间模式修复、模拟消息平衡、规则保存修复、删除计数即时更新
